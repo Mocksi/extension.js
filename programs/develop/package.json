@@ -9,7 +9,7 @@
     "node": ">=18"
   },
   "name": "@extension-create/develop",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "The develop step of Extension.js",
   "main": "./dist/module.js",
   "types": "./dist/module.d.ts",
@@ -70,6 +70,7 @@
     "stylelint": "^16.2.1",
     "stylelint-config-standard-scss": "^13.0.0",
     "stylelint-webpack-plugin": "^5.0.0",
+    "terser-webpack-plugin": "^5.3.10",
     "ts-loader": "^9.5.1",
     "vue-loader": "^17.4.2",
     "webextension-polyfill": "^0.10.0",

@@ -12,6 +12,7 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import StylelintPlugin from 'stylelint-webpack-plugin'
 import {VueLoaderPlugin} from 'vue-loader'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
 
 import {type DevOptions} from '../../extensionDev'
 import {isUsingTypeScript, tsCheckerOptions} from '../options/typescript'
@@ -70,6 +71,17 @@ export default function compilationPlugins(
 
       if (isUsingVue(projectDir)) {
         new VueLoaderPlugin().apply(compiler)
+      }
+      if (opts.mode === 'production') {
+        // Minify JS output
+        new TerserPlugin({
+          terserOptions: {
+            output: {
+              // Chrome extensions expect UTF-8 encoded files, so it's safer to use ascii_only
+              ascii_only: true,
+            },
+          },
+        }).apply(compiler)
       }
     }
   }
